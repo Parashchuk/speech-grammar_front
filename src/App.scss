@@ -1,0 +1,16 @@
+html,
+body,
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.app__container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
