@@ -44,7 +44,11 @@ const Main = () => {
           const blobData = new FormData();
           blobData.append('audio', audioBlob);
 
-          axios.post('transcript', blobData, { 'Content-type': 'multipart/form-data' });
+          axios
+            .post('transcript', blobData, { 'Content-type': 'multipart/form-data' })
+            .then((data) => {
+              setCheckedMessage(data.data.message);
+            });
         })
         .catch((err) => console.log(err));
     }
