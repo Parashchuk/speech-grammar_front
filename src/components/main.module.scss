@@ -4,8 +4,46 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  margin-bottom: 50px;
+  margin: 0 10%;
+  margin-bottom: 5%;
 
   &__container {
+    width: 100%;
+
+    &__textDisplay {
+      margin-bottom: 20px;
+
+      &__message {
+        border: 1px solid grey;
+        padding: 20px 10px;
+        border-radius: 10px;
+
+        &__correct {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    form {
+      display: flex;
+
+      input {
+        border-radius: 10px;
+        width: 100%;
+        margin-left: 20px;
+        padding: 10px 20px;
+        border: 1px solid grey;
+      }
+
+      button {
+        border: 1px solid grey;
+        background-color: transparent;
+        white-space: nowrap;
+        padding: 10px 20px;
+        border-radius: 10px;
+        width: 50%;
+        cursor: pointer;
+      }
+    }
   }
 }

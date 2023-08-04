@@ -39,16 +39,16 @@ const Main = () => {
       audioRecorder.current
         .stop()
         .then((audioBlob) => {
-          console.log(audioBlob);
+          if (audioBlob.size != 0 || audioBlob.size > 10000) {
+            const blobData = new FormData();
+            blobData.append('audio', audioBlob);
 
-          const blobData = new FormData();
-          blobData.append('audio', audioBlob);
-
-          axios
-            .post('transcript', blobData, { 'Content-type': 'multipart/form-data' })
-            .then((data) => {
-              setCheckedMessage(data.data.message);
-            });
+            axios
+              .post('transcript', blobData, { 'Content-type': 'multipart/form-data' })
+              .then((data) => {
+                setCheckedMessage(data.data.message);
+              });
+          }
         })
         .catch((err) => console.log(err));
     }
@@ -58,17 +58,19 @@ const Main = () => {
     <div className={style.main}>
       <div className={style.main__container}>
         <div className={style.main__container__textDisplay}>
-          <div className={style.main__container__textDisplay__correct}>
-            <span>The corrected version:</span> {checkedMessage}
-          </div>
-          <div className={style.main__container__textDisplay__userText}>
-            <span>Your version:</span> {userText}
+          <div className={style.main__container__textDisplay__message}>
+            <div className={style.main__container__textDisplay__message__correct}>
+              <span>The corrected version:</span> {checkedMessage}
+            </div>
+            <div className={style.main__container__textDisplay__message__userText}>
+              <span>Your version:</span> {userText}
+            </div>
           </div>
         </div>
         <form onSubmit={handleSubmit}>
-          <input type='text' />
+          <button onClick={toggleRecord}>{recordStatus ? 'Stop Record' : 'Start Record'}</button>
+          <input type='text' placeholder='Type your message' />
         </form>
-        <button onClick={toggleRecord}>{recordStatus ? 'Stop Record' : 'Start Record'}</button>
       </div>
     </div>
   );
