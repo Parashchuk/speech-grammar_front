@@ -1,0 +1,21 @@
+.navigation {
+  &__container {
+    padding: 20px;
+    border-right: 0.5px solid #d1d1d1;
+    height: 100%;
+
+    ul {
+      li:nth-of-type(1) {
+        font-weight: bold;
+      }
+      li {
+        min-width: 170px;
+        margin-bottom: 30px;
+      }
+    }
+
+    @media screen and (max-width: 734px) {
+      display: none;
+    }
+  }
+}

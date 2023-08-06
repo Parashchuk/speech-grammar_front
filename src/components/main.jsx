@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import axios from '../axios.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 
 import useAudioRecorder from '../hooks/useAudioRecorder.js';
 import style from './main.module.scss';
@@ -17,8 +19,13 @@ const Main = () => {
   //Text form hendler
   const handleSubmit = (event) => {
     event.preventDefault();
-    const inputText = event.target[0].value;
-    event.target[0].value = '';
+    const inputText = event.target[1].value;
+
+    if (inputText == '') {
+      return;
+    }
+
+    event.target[1].value = '';
 
     setUserText(inputText);
 
@@ -60,16 +67,25 @@ const Main = () => {
         <div className={style.main__container__textDisplay}>
           <div className={style.main__container__textDisplay__message}>
             <div className={style.main__container__textDisplay__message__correct}>
-              <span>The corrected version:</span> {checkedMessage}
+              <span>The corrected version: </span>
+              {checkedMessage}
             </div>
             <div className={style.main__container__textDisplay__message__userText}>
-              <span>Your version:</span> {userText}
+              <span>Your version: </span>
+              {userText}
             </div>
           </div>
         </div>
         <form onSubmit={handleSubmit}>
-          <button onClick={toggleRecord}>{recordStatus ? 'Stop Record' : 'Start Record'}</button>
-          <input type='text' placeholder='Type your message' />
+          <button type='button' className={style.inputVoiceRecord} onClick={toggleRecord}>
+            {recordStatus ? 'Stop Record' : 'Start Record'}
+          </button>
+          <div className={style.inputForm}>
+            <input type='text' placeholder='Type your message' />
+            <button>
+              <FontAwesomeIcon icon={faPaperPlane} />
+            </button>
+          </div>
         </form>
       </div>
     </div>
