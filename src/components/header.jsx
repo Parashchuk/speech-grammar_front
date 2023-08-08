@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
 import style from './header.module.scss';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ const Header = () => {
           <span className={style.header__container__item__text}>Some user</span>
 
           <span className={style.header__container__item__icon}>
-            <FontAwesomeIcon icon={faUser} />
+            <FontAwesomeIcon icon={faCircleUser} size='lg' />
           </span>
         </Link>
       </div>
